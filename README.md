@@ -11,4 +11,8 @@ Jed
 Team
 - [x] Cloned repo to desktops
 - [x] Imported to eclipse (or intellij)
+- [x] Installed Node.js
+- [x] Use npm to install:
+	- [x] jasmine
+	- [x] karma
 
