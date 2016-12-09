@@ -1,7 +1,7 @@
 # CMH
 
 ##Tasks
-Jed
+Driver
 - [x] Created the ORG Repo
 - [x] Created the Github Repo
 - [x] Created our group project folder
@@ -14,5 +14,4 @@ Team
 - [x] Installed Node.js
 - [x] Use npm to install:
 	- [x] jasmine
-	- [x] karma
 
