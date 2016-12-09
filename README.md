@@ -14,4 +14,8 @@ Team
 - [x] Installed Node.js
 - [x] Use npm to install:
 	- [x] jasmine
+- [x] Create Spring Hello World
+- [x] Establish Database
+	- [x] H2 Console
+- [x] Run Spring configuration test
 
