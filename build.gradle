@@ -42,5 +42,5 @@ node {
 	distBaseUrl = 'https://cnpmjs.org/mirrors/node'
 }
 
-check.dependsOn npm_test
+test.dependsOn npm_test
 npm_test.dependsOn npmInstall
