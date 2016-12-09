@@ -1,0 +1,8 @@
+{
+	"devDependencies": {
+		"jasmine": "*"
+	},
+	"scripts": {
+		"test": "jasmine JASMINE_CONFIG_PATH=src/test/resources/jasmine.json"
+	}
+}

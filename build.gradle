@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.craigburke.karma' version '1.4.4'
+  id "com.moowork.node" version "1.0.1"
 }
 
 apply plugin: 'java'
@@ -29,11 +29,15 @@ repositories {
 	mavenCentral()
 }
 
-
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	runtime('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+node {
+	download = true
+	distBaseUrl = 'https://cnpmjs.org/mirrors/node'
 }
