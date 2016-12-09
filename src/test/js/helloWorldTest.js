@@ -1,5 +1,5 @@
 describe("Hello World", function(){
 	it("should be true", function(){
-		expect(true).toBe(true);
+		expect(true).toBe(false);
 	});
 })
