@@ -17,3 +17,4 @@ Team
 - [x] Establish Database
 	- [x] H2 Console
 - [x] Run Spring configuration test
+- [x] Enabled jasmine testing via gitbash
