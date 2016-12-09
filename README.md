@@ -18,7 +18,3 @@ Team
 - [x] Establish Database
 	- [x] H2 Console
 - [x] Run Spring configuration test
-
-Test - Kierra
-New Test - Kierra
-Another Test - Kierra
