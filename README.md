@@ -1,7 +1,7 @@
 # CMH
 
 ##Tasks
-Jed
+Driver
 - [x] Created the ORG Repo
 - [x] Created the Github Repo
 - [x] Created our group project folder
@@ -14,5 +14,10 @@ Team
 - [x] Installed Node.js
 - [x] Use npm to install:
 	- [x] jasmine
-	- [x] karma
+- [x] Create Spring Hello World
+- [x] Establish Database
+	- [x] H2 Console
+- [x] Run Spring configuration test
 
+Test - Kierra
+New Test - Kierra
