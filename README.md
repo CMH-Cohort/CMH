@@ -11,9 +11,8 @@ Driver
 Team
 - [x] Cloned repo to desktops
 - [x] Imported to eclipse (or intellij)
-- [x] Installed Node.js
-- [x] Use npm to install:
-	- [x] jasmine
+- [x] added gradle-node-plugin
+    - [x] configured it to run jasmine tests
 - [x] Create Spring Hello World
 - [x] Establish Database
 	- [x] H2 Console
