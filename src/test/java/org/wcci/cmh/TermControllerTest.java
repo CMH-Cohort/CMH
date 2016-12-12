@@ -10,7 +10,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TermControllerTest {
 
 	@Test
-	public void firstTest() {
+	public void should() {
+		
+		
 	}
 
 }
