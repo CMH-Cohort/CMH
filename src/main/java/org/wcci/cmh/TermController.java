@@ -11,8 +11,13 @@ import org.wcci.cmh.Term;
 public class TermController {
 
     @RequestMapping("/term-list")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+    public String displayEntireListOfTerms(String name, Model model) {
         return "term-list";
+    }
+    
+    @RequestMapping("/term-single")
+    public String displayASingleTerm(@RequestParam(value="name", required=false) String name, Model model) {
+        return "term-single";
     }
     
 //	@RequestMapping("/review")
