@@ -16,7 +16,7 @@ public class TermController {
 	private TermRepository myTermRepository;
 
 	@RequestMapping("/term-list")
-	public String displayEntireListOfTerms(String name, Model model) {
+	public String displayEntireListOfTerms(@RequestParam(value = "name", required = false) String name, Model model) {
 		return "term-list";
 	}
 
