@@ -20,12 +20,11 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-
+<div th:text="${terms}"></div>
 	<ol>
-		<li th:each="terms : ${Terms}"><a
-			th:href="@{${Terms.name}" th:text="${Terms.name}" />
+		<li th:each="term : ${terms}"><a
+			th:href="@{${term.title}}" th:text="${term.title}" />
 		</li>
 	</ol>
-
 </body>
 </html>

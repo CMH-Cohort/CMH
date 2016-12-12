@@ -1,7 +1,5 @@
 package org.wcci.cmh;
 
-import java.util.Collection;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +14,7 @@ public class TermController {
 	private TermRepository myTermRepository;
 
 	@RequestMapping("/term-list")
-	public String displayEntireListOfTerms(@RequestParam(value = "name", required = false) String name, Model model) {
+	public String displayEntireListOfTerms(Model model) {
 	
 		Iterable<Term> terms = myTermRepository.findAll();
 		model.addAttribute("terms", terms);
