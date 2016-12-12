@@ -1,13 +1,13 @@
 package org.wcci.cmh;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import org.wcci.cmh.Term;
 
 @Controller
 public class TermController {
@@ -17,6 +17,9 @@ public class TermController {
 
 	@RequestMapping("/term-list")
 	public String displayEntireListOfTerms(@RequestParam(value = "name", required = false) String name, Model model) {
+	
+		Iterable<Term> Term = myTermRepository.findAll();
+		model.addAttribute("term", Term);
 		return "term-list";
 	}
 
@@ -26,6 +29,7 @@ public class TermController {
 		model.addAttribute("selectedTerm", term);
 		return "term-single";
 	}
+	
 
 	// @RequestMapping("/review")
 	// public String displayReview(@RequestParam("id") long id, Model model) {
