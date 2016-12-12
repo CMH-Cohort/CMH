@@ -16,14 +16,13 @@ public class TermController {
 	private TermRepository myTermRepository;
 
 	@RequestMapping("/term-list")
-	public String displayEntireListOfTerms(String name, Model model) {
+	public String displayEntireListOfTerms(@RequestParam(value = "name", required = false) String name, Model model) {
 	
 		Iterable<Term> terms = myTermRepository.findAll();
 		model.addAttribute("terms", terms);
 		return "term-list";
 	}
 
-	
 	@RequestMapping("/term-single")
 	public String displayASingleTerm(@RequestParam(value = "name", required = false) long id, Model model) {
 		Term term = myTermRepository.findOne(id);
