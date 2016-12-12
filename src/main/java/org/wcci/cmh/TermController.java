@@ -18,8 +18,8 @@ public class TermController {
 	@RequestMapping("/term-list")
 	public String displayEntireListOfTerms(String name, Model model) {
 	
-		Iterable<Term> Term = myTermRepository.findAll();
-		model.addAttribute("term", Term);
+		Iterable<Term> terms = myTermRepository.findAll();
+		model.addAttribute("terms", terms);
 		return "term-list";
 	}
 
