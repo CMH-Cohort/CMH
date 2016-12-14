@@ -32,7 +32,7 @@ public class TermController {
 
 	@RequestMapping("/search")
 	public String search(@RequestParam(value = "searchTitle") String title, Model model) {
-		Iterable<Term> searchResults = myTermRepository.findByTitleLike("%" + title + "%");
+		Iterable<Term> searchResults = myTermRepository.findByTitleIgnoreCaseLike("%" + title + "%");
 		model.addAttribute("terms", searchResults);
 		return "term-list";
 	}
