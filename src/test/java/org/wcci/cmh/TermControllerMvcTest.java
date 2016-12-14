@@ -21,11 +21,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest
 @RunWith(SpringRunner.class)
-/**
- * @author brian
- *
- * @see Mock
- */
 public class TermControllerMvcTest {
 
 	@Resource
