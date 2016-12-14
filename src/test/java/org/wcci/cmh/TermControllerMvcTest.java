@@ -53,6 +53,6 @@ public class TermControllerMvcTest {
 		when(repository.findByTitleLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
 
 		//this is doing a get request with the URL /search?searchTitle=searchTerm
-		mockMvcSupport.perform(get("/search").param("searchTitle", searchTerm)).andExpect(status().isOk());
+		mockMvcSupport.perform(get("/search").param("title", searchTerm)).andExpect(status().isOk());
 	}
 }

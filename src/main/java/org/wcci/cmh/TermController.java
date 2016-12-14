@@ -31,34 +31,13 @@ public class TermController {
 	}
 
 	@RequestMapping("/search")
-	public String search(@RequestParam(value = "searchTitle") String title, Model model) {
+	public String search(@RequestParam(value = "title") String title, Model model) {
 		Iterable<Term> searchResults = myTermRepository.findByTitleIgnoreCaseLike("%" + title + "%");
 		model.addAttribute("terms", searchResults);
 		return "term-list";
 	}
 	
 
-	// @RequestMapping("/review")
-	// public String displayReview(@RequestParam("id") long id, Model model) {
-	// Review review = myReviewRepository.findOne(id);
-	// model.addAttribute("selectedReview", review);
-	// return "single-review";
-	// }
-	//
-	// @RequestMapping("/all")
-	// public String displayAll(Model model) {
-	// Iterable<Review> reviews = myReviewRepository.findAll();
-	// model.addAttribute("reviews", reviews);
-	// Iterable<Category> categories = myCategoryRepository.findAll();
-	// model.addAttribute("categories", categories);
-	// return "all-reviews";
-	// }
-	//
-	// @RequestMapping("/categories")
-	// public String displayCategories(Model model) {
-	// Iterable<Category> categories = myCategoryRepository.findAll();
-	// model.addAttribute("categories", categories);
-	// return "all-categories";
-	// }
+	
 
 }
