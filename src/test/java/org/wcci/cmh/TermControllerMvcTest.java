@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class TermControllerMvcTest {
 
 	@Resource
-	private MockMvc mockMvc;
+	private MockMvc mockMvcSupport;
 
 	// this replaces the real bean in the Spring context with a Mockito mock
 	@MockBean
@@ -52,6 +52,7 @@ public class TermControllerMvcTest {
 		// I'm just returning an empty list since we don't care about the actual results
 		when(repository.findByTitleLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
 
-		mockMvc.perform(get("/search").param("searchTitle", searchTerm)).andExpect(status().isOk());
+		//this is doing a get request with the URL /search?searchTitle=searchTerm
+		mockMvcSupport.perform(get("/search").param("searchTitle", searchTerm)).andExpect(status().isOk());
 	}
 }
