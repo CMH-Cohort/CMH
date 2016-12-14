@@ -35,7 +35,7 @@ public class TermControllerTest {
 	
 	@Test
 	public void shouldSearch() {
-		when(repository.findByTitleLike("%Nonsense%")).thenReturn(searchResults);
+		when(repository.findByTitleIgnoreCaseLike("%Nonsense%")).thenReturn(searchResults);
 
 		underTest.search("Nonsense", model);
 
