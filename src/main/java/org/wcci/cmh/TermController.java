@@ -37,6 +37,11 @@ public class TermController {
 		return "term-list";
 	}
 	
+	@RequestMapping("/add")
+	public String add(@RequestParam(value = "title") String title) {
+		return "term-list";
+	}
+	
 
 	
 

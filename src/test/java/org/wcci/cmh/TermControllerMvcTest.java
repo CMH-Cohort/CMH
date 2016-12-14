@@ -33,7 +33,8 @@ public class TermControllerMvcTest {
 	@Mock
 	// this is not managed by Spring so we just use a standard @Mock annotation
 	private Collection<Term> results;
-
+    
+    
 	/**
 	 * <p>These methods used below are imported via static imports:</p>
 	 * 
@@ -54,5 +55,12 @@ public class TermControllerMvcTest {
 
 		//this is doing a get request with the URL /search?searchTitle=searchTerm
 		mockMvcSupport.perform(get("/search").param("title", searchTerm)).andExpect(status().isOk());
+	}
+	
+	@Test
+	public void shouldAddTerm() throws Exception {
+		
+		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
+		
 	}
 }
