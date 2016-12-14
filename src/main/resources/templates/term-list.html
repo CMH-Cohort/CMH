@@ -20,11 +20,24 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<form>
+<input type="text" name="search" />
+<input type="submit" value="Search" />
+</form>
+
 <div th:text="${terms}"></div>
 	<ol>
 		<li th:each="term : ${terms}"><a
 			th:href="@{${term.title}}" th:text="${term.title}" />
 		</li>
 	</ol>
+	
+	<ol>
+		<li th:each="terms : ${searchResults}"><a
+			th:href="@{'terms?id=' + ${terms.id}}"
+			th:text="${terms.title} + ' [' + ${#strings.capitalize(terms.title)} + ']'" />
+		</li>
+	</ol>
+	
 </body>
 </html>
