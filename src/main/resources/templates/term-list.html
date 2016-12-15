@@ -22,20 +22,34 @@
 <body>
 	<h1>Search Terms</h1>
 
-<form action="/search">
-<input type="text" name="title" />
-<input type="submit" value="Search" />
-</form>
+	<form action="/search">
+		<input type="text" name="title" /> <input type="submit"
+			value="Search" />
+	</form>
+
+	<h1>Add Term</h1>
+
+	<form action="/add">
+		<input type="text" name="title" /> <input type="submit"
+			value="Add" />
+	</form>
+
+	<h1>Remove Term</h1>
+
+	<form action="/remove">
+		<input type="text" name="title" /> <input type="submit"
+												  value="Remove" />
+	</form>
 
 	<h1>List of Terms</h1>
 
 	<!-- Put the for-each loop inside the tag you want to repeat -->
 	<ol>
 		<li th:each="term : ${terms}"><a
-			th:href="@{'term?id=' + ${term.id}}"
-			th:text="${term.title}" />
-		</li>
+			th:href="@{'term?id=' + ${term.id}}" th:text="${term.title}" /></li>
 	</ol>
+
+
 
 </body>
 </html>
