@@ -11,15 +11,11 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-<<<<<<< HEAD
-	private String username;	
-=======
 	private String username;
 	private String password;
 	
 	
 	
 	
->>>>>>> master
 
 }
