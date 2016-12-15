@@ -1,14 +1,5 @@
 package org.wcci.cmh;
 
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.Collection;
-import java.util.Collections;
-
-import javax.annotation.Resource;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -18,6 +9,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import javax.annotation.Resource;
+import java.util.Collection;
+import java.util.Collections;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
 @RunWith(SpringRunner.class)
@@ -62,5 +61,12 @@ public class TermControllerMvcTest {
 		
 		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
 		
+	}
+
+	@Test
+	public void shouldRemoveTerm() throws Exception {
+
+		mockMvcSupport.perform(get("/remove").param("title", "addTerm")).andExpect(status().isOk());
+
 	}
 }
