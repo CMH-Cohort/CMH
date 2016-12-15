@@ -38,8 +38,10 @@ public class TermController {
 	}
 	
 	@RequestMapping("/add")
-	public String add(@RequestParam(value = "title") String title) {
-		return "term-list";
+	public String add(@RequestParam(value = "title") String title, Model model) {
+		Term term = new Term(title);
+		myTermRepository.save(term);
+		return displayEntireListOfTerms(model);
 	}
 	
 	

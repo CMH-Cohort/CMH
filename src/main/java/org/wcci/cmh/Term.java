@@ -30,4 +30,9 @@ public class Term {
 		return title;
 	}
 
+	@Override
+	public String toString() {
+		return "Term [title=" + title + "]";
+	}
+
 }
