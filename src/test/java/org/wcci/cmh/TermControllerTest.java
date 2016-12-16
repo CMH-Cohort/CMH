@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -73,5 +75,13 @@ public class TermControllerTest {
 
     }
 
+    @Test
+    public void shouldPreventDuplicates() {
+        when(repository.findByTitleIgnoreCase("a Created Term")).thenReturn(term);
+
+        underTest.add("a Created Term", model);
+
+        verify(repository, never()).save(any(Term.class));
+    }
 
 }
