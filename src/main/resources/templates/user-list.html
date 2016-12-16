@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>User List</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Search Users</h1>
+
+	<form action="/searchUser">
+		<input type="text" name="username" /> <input type="submit"
+			value="Search" />
+	</form>
+
+	<!-- Link back to the complete list after search -->
+	<a href="/all">Click here to view the full list of users</a>
+
+	<h1>Add User</h1>
+
+	<form action="/addUser">
+		<input type="text" name="username" /> <input type="submit"
+			value="Add" />
+	</form>
+
+	<h1>Remove User</h1>
+
+	<form action="/removeUser">
+		<input type="text" name="username" /> <input type="submit"
+												  value="Remove" />
+	</form>
+
+	<h1>List of Users</h1>
+
+	<!-- Put the for-each loop inside the tag you want to repeat -->
+	<ol>
+		<li th:each="user : ${users}"><a
+			th:href="@{'user?id=' + ${user.id}}" th:text="${user.username}" /></li>
+	</ol>
+
+
+
+</body>
+</html>

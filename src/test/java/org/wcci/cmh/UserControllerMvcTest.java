@@ -18,20 +18,20 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(TermController.class)
+@WebMvcTest(UserController.class)
 @RunWith(SpringRunner.class)
-public class TermControllerMvcTest {
+public class UserControllerMvcTest {
 
 	@Resource
 	private MockMvc mockMvcSupport;
 
 	// this replaces the real bean in the Spring context with a Mockito mock
 	@MockBean
-	private TermRepository repository;
+	private UserRepository repository;
 
-	@Mock
-	// this is not managed by Spring so we just use a standard @Mock annotation
-	private Collection<Term> results;
+//	@Mock
+//	// this is not managed by Spring so we just use a standard @Mock annotation
+//	private Collection<Term> results;
         
 	/**
 	 * <p>These methods used below are imported via static imports:</p>
@@ -49,23 +49,23 @@ public class TermControllerMvcTest {
 		
 		String searchTerm = "searchTerm";
 		// I'm just returning an empty list since we don't care about the actual results
-		when(repository.findByTitleLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
+		when(repository.findByUsernameLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
 
 		//this is doing a get request with the URL /search?searchTitle=searchTerm
-		mockMvcSupport.perform(get("/search").param("title", searchTerm)).andExpect(status().isOk());
+		mockMvcSupport.perform(get("/searchUser").param("username", searchTerm)).andExpect(status().isOk());
 	}
 	
 	@Test
-	public void shouldAddTerm() throws Exception {
+	public void shouldAddUser() throws Exception {
 		
-		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
+		mockMvcSupport.perform(get("/addUser").param("username", "addUser")).andExpect(status().isOk());
 		
 	}
 
 	@Test
-	public void shouldRemoveTerm() throws Exception {
+	public void shouldRemoveUser() throws Exception {
 
-		mockMvcSupport.perform(get("/remove").param("title", "addTerm")).andExpect(status().isOk());
+		mockMvcSupport.perform(get("/removeUser").param("username", "addUser")).andExpect(status().isOk());
 
 	}
 }
