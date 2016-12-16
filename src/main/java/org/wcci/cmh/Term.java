@@ -9,30 +9,31 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Term {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	@NotNull //makes title required to enter from user, w/ Anthony
-	private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
-	protected Term() {}
+    @NotNull //makes title required to enter from user, w/ Anthony
+    private String title;
 
-	public Term(String title){
-		this.title = title;
-	}
+    protected Term() {
+    }
 
-	public long getId() {
-		return id;
-	}
+    public Term(String title) {
+        this.title = title;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public long getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		return "Term [title=" + title + "]";
-	}
+    public String getTitle() {
+        return title;
+    }
+
+    @Override
+    public String toString() {
+        return "Term [title=" + title + "]";
+    }
 
 }

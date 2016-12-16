@@ -21,7 +21,6 @@ public class UserController {
         return "user-list";
     }
 
-
 /*    @RequestMapping("/term-single")
     public String displayASingleTerm(@RequestParam(value = "name", required = false) long id, Model model) {
         Term term = myUserRepository.findOne(id);

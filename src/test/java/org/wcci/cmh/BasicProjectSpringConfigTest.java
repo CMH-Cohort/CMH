@@ -9,9 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class BasicProjectSpringConfigTest {
 
-	  @Test
-	  public void shouldLoadConfiguration() {
-	    // don't really need to do anything -- we're just checking for an initialization failure
-	  }
-	}
+    @Test
+    public void shouldLoadConfiguration() {
+        // don't really need to do anything -- we're just checking for an initialization failure
+    }
+}
 

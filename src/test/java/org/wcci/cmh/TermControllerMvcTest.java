@@ -22,7 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 public class TermControllerMvcTest {
 
-<<<<<<< HEAD
     @Resource
     private MockMvc mockMvcSupport;
 
@@ -33,7 +32,6 @@ public class TermControllerMvcTest {
     @Mock
     // this is not managed by Spring so we just use a standard @Mock annotation
     private Collection<Term> results;
-
 
     /**
      * <p>These methods used below are imported via static imports:</p>
@@ -46,6 +44,7 @@ public class TermControllerMvcTest {
      *
      * @throws Exception because some of the mock MVC methods throw exceptions
      */
+
     @Test
     public void shouldSearch() throws Exception {
 
@@ -70,52 +69,4 @@ public class TermControllerMvcTest {
         mockMvcSupport.perform(get("/remove").param("title", "addTerm")).andExpect(status().isOk());
 
     }
-=======
-	@Resource
-	private MockMvc mockMvcSupport;
-
-	// this replaces the real bean in the Spring context with a Mockito mock
-	@MockBean
-	private TermRepository repository;
-
-	@Mock
-	// this is not managed by Spring so we just use a standard @Mock annotation
-	private Collection<Term> results;
-        
-	/**
-	 * <p>These methods used below are imported via static imports:</p>
-	 * 
-	 * <ul>
-	 * <li>{@link MockMvcRequestBuilders#get(String, Object...)}: performs an HTTP
-	 * GET for the specified URL (like navigating to it in your browser)</li>
-	 * <li>{@link MockMvcResultMatchers#status}(): gives the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP response status</a>
-	 * </ul>
-	 * @throws Exception
-	 *             because some of the mock MVC methods throw exceptions
-	 */
-	@Test
-	public void shouldSearch() throws Exception {
-		
-		String searchTerm = "searchTerm";
-		// I'm just returning an empty list since we don't care about the actual results
-		when(repository.findByTitleLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
-
-		//this is doing a get request with the URL /search?searchTitle=searchTerm
-		mockMvcSupport.perform(get("/search").param("title", searchTerm)).andExpect(status().isOk());
-	}
-	
-	@Test
-	public void shouldAddTerm() throws Exception {
-		
-		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
-		
-	}
-
-	@Test
-	public void shouldRemoveTerm() throws Exception {
-
-		mockMvcSupport.perform(get("/remove").param("title", "addTerm")).andExpect(status().isOk());
-
-	}
->>>>>>> af239466f659298ae7ce9d0d4a9661325d8fc6fa
 }
