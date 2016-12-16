@@ -18,7 +18,7 @@ public class UserController {
 
         Iterable<User> users = myUserRepository.findAll();
         model.addAttribute("users", users);
-        return "term-list";
+        return "user-list";
     }
 
 
@@ -33,7 +33,7 @@ public class UserController {
     public String search(@RequestParam(value = "username") String username, Model model) {
         Iterable<User> searchResults = myUserRepository.findByUsernameIgnoreCaseLike("%" + username + "%");
         model.addAttribute("users", searchResults);
-        return "term-list";
+        return "user-list";
     }
 
     @RequestMapping("/addUser")

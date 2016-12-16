@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<username>Getting Started: Serving Web Content</username>
+<title>User List</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <!-- Latest compiled and minified CSS -->
@@ -22,7 +22,7 @@
 <body>
 	<h1>Search Users</h1>
 
-	<form action="/search">
+	<form action="/searchUser">
 		<input type="text" name="username" /> <input type="submit"
 			value="Search" />
 	</form>
@@ -32,19 +32,19 @@
 
 	<h1>Add User</h1>
 
-	<form action="/add">
+	<form action="/addUser">
 		<input type="text" name="username" /> <input type="submit"
 			value="Add" />
 	</form>
 
 	<h1>Remove User</h1>
 
-	<form action="/remove">
+	<form action="/removeUser">
 		<input type="text" name="username" /> <input type="submit"
 												  value="Remove" />
 	</form>
 
-	<h1>List of User</h1>
+	<h1>List of Users</h1>
 
 	<!-- Put the for-each loop inside the tag you want to repeat -->
 	<ol>
