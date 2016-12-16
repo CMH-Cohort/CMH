@@ -16,11 +16,12 @@ public class TermStatus {
     private boolean done;
 	
 	@OneToOne
-	Term term;
+	private Term term;
 		
 	protected TermStatus() {}
 	
-	public TermStatus (boolean done) {
+	public TermStatus (Term term, boolean done) {
+		this.term = term;
 		this.done = done;
 	}
 

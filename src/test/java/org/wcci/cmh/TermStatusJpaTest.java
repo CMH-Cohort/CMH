@@ -24,16 +24,28 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TermStatusJpaTest {
 
 	@Resource
-	private TermStatusRepository repository;
+	private TermStatusRepository termStatusRepository;
+	
+	@Resource
+	private TermRepository termRepository;
 
 	/**
 	 * This method assumes you've created inserts for term statuses already in import.sql.
 	 */
 	@Test
 	public void shouldHaveTerm() {
-		Iterable<TermStatus> statuses = repository.findAll();
+		Iterable<TermStatus> statuses = termStatusRepository.findAll();
 		TermStatus firstStatus = statuses.iterator().next();
 		
 		assertThat(firstStatus.getTerm(), is(not(nullValue())));
 	}
+	
+	@Test
+	public void shouldSaveTermRelationship() {
+		Term term = termRepository.findOne(1L);
+		TermStatus status = new TermStatus(term, false);
+		termStatusRepository.save(status);
+		
+	}
+	
 }
