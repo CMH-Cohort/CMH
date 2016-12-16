@@ -19,5 +19,19 @@ Team
 	- [x] H2 Console
 - [x] Run Spring configuration test
 - [x] Enabled jasmine testing via gitbash
+- [x] Created view for the list of terms
 
 ##Iteration 1
+- [x] Saved terms to database
+- [x] Add terms to the database
+	- [x] UI to launch URL
+	- [x] URL to add item
+	- [x] Used Mock so save method invoked added term
+- [x] Remove terms from the database
+	- [x] UI to launch URL
+	- [x] URL to remove item
+- [x] Return to full list of items after item search
+- [x] Prevent duplicate entries
+- [x] Create list of users
+	- [x] Save users to database
+	- [x] View list of users
