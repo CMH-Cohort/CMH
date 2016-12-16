@@ -7,12 +7,12 @@ import java.util.Collection;
 public interface UserRepository extends CrudRepository<User, Long> {
 
     // This method allows us to search the 'title' field of the users.
-    Collection<User> findByTitleLike(String title);
+    Collection<User> findByUsernameLike(String username);
 
     // This method allows us to do a case-insensitive search of the 'title' field of the users.
-    Collection<User> findByTitleIgnoreCaseLike(String title);
+    Collection<User> findByUsernameIgnoreCaseLike(String username);
 
     // This method allows us to do a case-insensitive selection of 'title' field of users.
-    User findByTitleIgnoreCase(String title);
+    User findByUsernameIgnoreCase(String username);
 
 }
