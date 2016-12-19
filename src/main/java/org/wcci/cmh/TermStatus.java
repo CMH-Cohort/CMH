@@ -13,7 +13,7 @@ public class TermStatus {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private boolean done;
+	private boolean done;
 	
 	@OneToOne
 	private Term term;
@@ -37,6 +37,9 @@ public class TermStatus {
 		return done;
 	}
 	
+    public void markDone() {
+		done = true;
+	}
 	
 
 }

@@ -17,7 +17,7 @@ public class Term {
     @NotNull //makes title required to enter from user, w/ Anthony
     private String title;
 
-    @OneToOne
+    @OneToOne(mappedBy="term")
     private TermStatus termStatus;
     
     protected Term() {
