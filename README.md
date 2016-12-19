@@ -32,8 +32,11 @@ Team
 	- [x] URL to remove item
 - [x] Return to full list of items after item search
 - [x] Prevent duplicate entries
+	- [x] Prevent duplicate terms
+	- [x] Prevent duplicate users
 - [x] Create list of users
 	- [x] Save users to database
 	- [x] View list of users
+- [x] Create a 'marked done' status for terms
 	
 ##Iteration 2
