@@ -18,6 +18,15 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+            
+            <script type="text/javascript">
+	$(document).ready(function() {
+		$('input[type="checkbox"]').click(function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	});
+</script>
 </head>
 <body>
 <h1>Search Terms</h1>
@@ -48,10 +57,9 @@
 
 <!-- Put the for-each loop inside the tag you want to repeat -->
 <ol>
-    <li th:each="term : ${terms}"><a
+    <li th:each="term : ${terms}"> <input type="checkbox" class="myCheckbox" /><a
             th:href="@{'term?id=' + ${term.id}}" th:text="${term.title}"/></li>
 </ol>
-
 
 </body>
 </html>

@@ -18,7 +18,7 @@ public class Term {
     private String title;
 
     @OneToOne
-    TermStatus termStatus;
+    private TermStatus termStatus;
     
     protected Term() {
     }
@@ -38,6 +38,10 @@ public class Term {
     @Override
     public String toString() {
         return "Term [title=" + title + "]";
+    }
+    
+    public TermStatus getStatus() {
+    	return termStatus;
     }
 
 }
