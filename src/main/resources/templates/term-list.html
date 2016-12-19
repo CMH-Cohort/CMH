@@ -104,7 +104,7 @@
 
 <!-- Put the for-each loop inside the tag you want to repeat -->
 <ol>
-    <li th:each="term : ${terms}"> <input type="checkbox" class="status" th:id="'termStatus-' + ${term.status.id}" /><a
+    <li th:each="term : ${terms}"> <input type="checkbox" th:class="'status done-' + ${term.status.done}" th:id="'termStatus-' + ${term.status.id}" /><a
             th:href="@{'term?id=' + ${term.id}}" th:text="${term.title}"/></li>
 </ol>
 
