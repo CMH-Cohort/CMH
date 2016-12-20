@@ -32,7 +32,7 @@
 		// Code to run if the request succeeds (is done);
 		  // The response is passed to the function
 		  .done(function() {
-		     this.toggle.checked = true; // adjust when using a div
+		     $(this.toggle).toggleClass('done-true'); // adjust when using a div
 		  })
 		  // Code to run if the request fails; the raw request and
 		  // status codes are passed to the function
