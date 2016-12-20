@@ -9,6 +9,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"></link>
+          
+    <link rel="stylesheet" href="style.css"></link>
 
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -24,11 +26,11 @@
 		$('.status').click(function(event) {
 			event.preventDefault();
 			event.stopPropagation();
-			toggleStatus(this);
+			markDone(this);
 		});
 	});
 	
-	function toggleStatus(termStatusToggle) {
+	function markDone(termStatusToggle) {
 		console.log($(termStatusToggle)[0].id.split('-')[1]);
 		var termStatusId = extractId($(termStatusToggle)[0]);
 		
@@ -54,7 +56,7 @@
 		// Code to run if the request succeeds (is done);
 		  // The response is passed to the function
 		  .done(function() {
-		     this.toggle.checked = true;
+		     this.toggle.checked = true; // adjust when using a div
 		  })
 		  // Code to run if the request fails; the raw request and
 		  // status codes are passed to the function
