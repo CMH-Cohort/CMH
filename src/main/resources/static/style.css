@@ -1,0 +1,16 @@
+.status {
+	border: 15px solid #53C15A; 
+	font-weight: bold;
+	color: black;
+	background-color: white;
+	padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.done-true{
+	background-color: #53C15A;
+	color: white;
+}
+
+/* ONLY STAGE AND ADD THIS FILE -- NOT THE HTML!! */
