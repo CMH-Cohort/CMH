@@ -1,10 +1,6 @@
 package org.wcci.cmh;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,14 +13,15 @@ public class Term {
     @NotNull //makes title required to enter from user, w/ Anthony
     private String title;
 
-    @OneToOne(mappedBy="term")
+    @OneToOne(mappedBy = "term", cascade = CascadeType.ALL)
     private TermStatus termStatus;
-    
+
     protected Term() {
     }
 
     public Term(String title) {
         this.title = title;
+        termStatus = new TermStatus(this, false);
     }
 
     public long getId() {
@@ -39,9 +36,9 @@ public class Term {
     public String toString() {
         return "Term [title=" + title + "]";
     }
-    
+
     public TermStatus getStatus() {
-    	return termStatus;
+        return termStatus;
     }
 
 }
