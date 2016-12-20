@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,6 +17,9 @@ public class Term {
     @NotNull //makes title required to enter from user, w/ Anthony
     private String title;
 
+    @OneToOne(mappedBy="term")
+    private TermStatus termStatus;
+    
     protected Term() {
     }
 
@@ -34,6 +38,10 @@ public class Term {
     @Override
     public String toString() {
         return "Term [title=" + title + "]";
+    }
+    
+    public TermStatus getStatus() {
+    	return termStatus;
     }
 
 }

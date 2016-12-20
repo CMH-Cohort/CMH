@@ -9,6 +9,8 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
           crossorigin="anonymous"></link>
+          
+    <link rel="stylesheet" href="style.css"></link>
 
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -18,6 +20,62 @@
             src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+            
+            <script type="text/javascript">
+	$(document).ready(function() {
+		$('.status').click(function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			markDone(this);
+		});
+	});
+	
+	function markDone(termStatusToggle) {
+		console.log($(termStatusToggle)[0].id.split('-')[1]);
+		var termStatusId = extractId($(termStatusToggle)[0]);
+		
+		// Using the core $.ajax() method
+ 		$.ajax({
+		 
+		    // The URL for the request
+		    url: "/markDone",
+		 
+		    // The data to send (will be converted to a query string)
+		    data: {
+		        termStatusId: termStatusId
+		    },
+		    
+		 	toggle: termStatusToggle,
+		 	
+		    // Whether this is a POST or GET request
+		    type: "GET",
+		 
+		    // The type of data we expect back
+		    dataType : "text"
+		})
+		// Code to run if the request succeeds (is done);
+		  // The response is passed to the function
+		  .done(function() {
+		     this.toggle.checked = true; // adjust when using a div
+		  })
+		  // Code to run if the request fails; the raw request and
+		  // status codes are passed to the function
+		   .fail(function( xhr, status, errorThrown ) {
+		    alert( "Sorry, there was a problem!" );
+		    console.log( "Error: " + errorThrown );
+		    console.log( "Status: " + status );
+		    console.dir( xhr );
+		  })
+		  // Code to run regardless of success or failure;
+		  .always(function( xhr, status ) {
+		    alert( "The request is complete!" );
+		  }); 
+	}
+	
+	function extractId(input) {
+		return input.id.split('-')[1];
+	}
+</script>
 </head>
 <body>
 <h1>Search Terms</h1>
@@ -48,10 +106,9 @@
 
 <!-- Put the for-each loop inside the tag you want to repeat -->
 <ol>
-    <li th:each="term : ${terms}"><a
+    <li th:each="term : ${terms}"> <input type="checkbox" th:class="'status done-' + ${term.status.done}" th:id="'termStatus-' + ${term.status.id}" /><a
             th:href="@{'term?id=' + ${term.id}}" th:text="${term.title}"/></li>
 </ol>
-
 
 </body>
 </html>
