@@ -39,5 +39,9 @@ public class TermStatus {
         done = true;
     }
 
+	public void markNotDone() {
+		done = false;
+	}
+
 
 }

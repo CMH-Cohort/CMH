@@ -20,6 +20,11 @@ public class TermStatusController {
         myTermStatusRepository.save(status);
     }
 
-   
+    @RequestMapping("/markNotDone")
+    public @ResponseBody void markNotDone(@RequestParam(value = "termStatusId") long id) {
+        TermStatus status = myTermStatusRepository.findOne(id);
+        status.markNotDone();
+        myTermStatusRepository.save(status);
+    }
 
 }
