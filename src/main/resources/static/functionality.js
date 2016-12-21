@@ -2,26 +2,28 @@
 		$('.status').click(function(event) {
 			event.preventDefault();
 			event.stopPropagation();
-			markDone(this);
+			toggleDone(this);
 		});
 	});
 	
-	function markDone(termStatusToggle) {
+	function toggleDone(termStatusToggle) {
 		console.log($(termStatusToggle)[0].id.split('-')[1]);
 		var termStatusId = extractId($(termStatusToggle)[0]);
 		
 		// Using the core $.ajax() method
  		$.ajax({
 		 
-		    // The URL for the request
-		    url: "/markDone",
+ 			toggle: termStatusToggle,
+ 			
+ 			// The URL for the request
+		    url: $(termStatusToggle).hasClass('done-true') ? "/markNotDone" : "/markDone",
 		 
 		    // The data to send (will be converted to a query string)
 		    data: {
 		        termStatusId: termStatusId
 		    },
 		    
-		 	toggle: termStatusToggle,
+		 	
 		 	
 		    // Whether this is a POST or GET request
 		    type: "GET",
@@ -32,7 +34,8 @@
 		// Code to run if the request succeeds (is done);
 		  // The response is passed to the function
 		  .done(function() {
-		     this.toggle.checked = true; // adjust when using a div
+		     $(this.toggle).toggleClass('done-true'); // adjust when using a div
+		     console.log($(this.toggle).hasClass('done-true'));
 		  })
 		  // Code to run if the request fails; the raw request and
 		  // status codes are passed to the function
@@ -43,9 +46,9 @@
 		    console.dir( xhr );
 		  })
 		  // Code to run regardless of success or failure;
-		  .always(function( xhr, status ) {
-		    alert( "The request is complete!" );
-		  }); 
+//		  .always(function( xhr, status ) {
+//		    alert( "The request is complete!" );
+//		  }); 
 	}
 	
 	function extractId(input) {
