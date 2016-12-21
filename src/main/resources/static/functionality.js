@@ -16,7 +16,7 @@
  			toggle: termStatusToggle,
  			
  			// The URL for the request
-		    url: ($(this.toggle).hasClass('done-true')) ? "/markNotDone" : "/markDone",
+		    url: $(termStatusToggle).hasClass('done-true') ? "/markNotDone" : "/markDone",
 		 
 		    // The data to send (will be converted to a query string)
 		    data: {
@@ -35,6 +35,7 @@
 		  // The response is passed to the function
 		  .done(function() {
 		     $(this.toggle).toggleClass('done-true'); // adjust when using a div
+		     console.log($(this.toggle).hasClass('done-true'));
 		  })
 		  // Code to run if the request fails; the raw request and
 		  // status codes are passed to the function
