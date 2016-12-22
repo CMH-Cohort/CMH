@@ -5,13 +5,13 @@ import javax.persistence.*;
 @Entity
 public class TermStatus {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private boolean done;
 
-    @OneToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Term term;
 
     protected TermStatus() {
@@ -44,4 +44,15 @@ public class TermStatus {
 	}
 
 
+    public void setId(long id) {
+		this.id = id;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public void setTerm(Term term) {
+		this.term = term;
+	}
 }

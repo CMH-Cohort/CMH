@@ -12,6 +12,9 @@ public class TermController {
 
     @Resource
     private TermRepository myTermRepository;
+    
+    @Resource 
+    private UserRepository myUserRepository;
 
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
@@ -42,8 +45,19 @@ public class TermController {
         if (searchResults == null) {
             Term term = new Term(title);
             myTermRepository.save(term);
+            Iterable<User> allUsers = myUserRepository.findAll();
+            if (allUsers != null && allUsers.iterator() != null && allUsers.iterator().hasNext()){
+            	for(User user : allUsers) {
+            		TermStatus termStatus = new TermStatus();
+            		termStatus.setTerm(term);
+            		termStatus.setDone(false);
+            		user.getTermStatuses().add(termStatus);
+            		myUserRepository.save(user);
+            	}
+            }
         }
-        return displayEntireListOfTerms(model);
+        return "redirect:/all";
+        //return displayEntireListOfTerms(model);
     }
 
     @RequestMapping("/remove")
