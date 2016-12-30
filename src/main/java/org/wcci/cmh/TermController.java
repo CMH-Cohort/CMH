@@ -15,6 +15,9 @@ public class TermController {
     
     @Resource 
     private UserRepository myUserRepository;
+    
+    @Resource
+    private TermStatusRepository termStatusRepository;
 
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
@@ -50,6 +53,7 @@ public class TermController {
             	for(User user : allUsers) {
             		TermStatus termStatus = new TermStatus();
             		termStatus.setTerm(term);
+            		termStatus.setUser(user);
             		termStatus.setDone(false);
             		user.getTermStatuses().add(termStatus);
             		myUserRepository.save(user);

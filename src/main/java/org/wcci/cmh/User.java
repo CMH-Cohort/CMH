@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class User {
 
-	@OneToMany(targetEntity = TermStatus.class, cascade = CascadeType.ALL) 
+	@OneToMany(targetEntity = TermStatus.class, cascade = CascadeType.ALL, mappedBy="user") 
 	private List<TermStatus> termStatuses;
 	
     @Id

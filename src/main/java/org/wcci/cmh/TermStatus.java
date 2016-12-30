@@ -13,6 +13,9 @@ public class TermStatus {
 
     @ManyToOne(cascade=CascadeType.ALL)
     private Term term;
+    
+    @ManyToOne
+    private User user;
 
     protected TermStatus() {
 
@@ -54,5 +57,13 @@ public class TermStatus {
 
 	public void setTerm(Term term) {
 		this.term = term;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
