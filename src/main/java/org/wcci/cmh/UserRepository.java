@@ -15,4 +15,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     // This method allows us to do a case-insensitive selection of 'title' field of users.
     User findByUsernameIgnoreCase(String username);
 
+	User findByUsernameAndPassword(String name, String password);
+
 }
