@@ -17,9 +17,9 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 @Order(1000)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity security) throws Exception {
     	
-    	http
+    	security
         .authorizeRequests()
          .antMatchers("/all", "/add", "/remove", "/search").authenticated()
          .antMatchers("/console/**").permitAll()
@@ -31,7 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .logout()
             .permitAll();
     
-        http.csrf().ignoringAntMatchers("/console/**");
+    	security.csrf().disable();
+    	security.headers().frameOptions().disable();
         
     }
 
