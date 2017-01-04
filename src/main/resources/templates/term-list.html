@@ -51,8 +51,8 @@
 <h1>List of Terms</h1>
 
 <!-- Put the for-each loop inside the tag you want to repeat -->
-<div th:each="term : ${terms}" th:class="'status done-' + ${term.termStatuses.get(0).done}" th:id="'termStatuses-' + ${term.termStatuses.get(0).id}"
+<div id="term-background"><div th:each="term : ${terms}" th:class="'col-xs-6 col-sm-4 col-md-3 col-lg-2 status done-' + ${term.termStatuses.get(0).done}" th:id="'termStatuses-' + ${term.termStatuses.get(0).id}"
      th:text="${term.title}">
-</div>
+</div></div>
 </body>
 </html>

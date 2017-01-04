@@ -1,11 +1,14 @@
 package org.wcci.cmh;
 
+import java.security.Principal;
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.annotation.Resource;
 
 @Controller
 public class TermController {
@@ -18,11 +21,20 @@ public class TermController {
     
     @Resource
     private TermStatusRepository termStatusRepository;
+    
+//    @Resource
+//    private Principal principal;
 
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
+//    	User user = myUserRepository.findByUsernameIgnoreCase((principal.getName()));
 
         Iterable<Term> terms = myTermRepository.findAll();
+//    	ArrayList<Term> terms = new ArrayList<>();
+//    	Iterable<TermStatus> termStatuses = termStatusRepository.findByUser(user);
+//    	for(TermStatus status : termStatuses) {
+//    		terms.add(status.getTerm());
+//    	}
         model.addAttribute("terms", terms);
         return "term-list";
     }

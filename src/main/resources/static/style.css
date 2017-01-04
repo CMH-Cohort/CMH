@@ -1,3 +1,16 @@
+html {
+	background-color: #53C15A;
+}
+
+body {
+	background-color: white;
+}
+
+
+#term-background {
+	background-color: #53C15A;
+}
+
 .status {
 	border: 15px solid #53C15A; 
 	font-weight: bold;
