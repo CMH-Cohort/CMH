@@ -1,8 +1,5 @@
 package org.wcci.cmh;
 
-import java.security.Principal;
-import java.util.ArrayList;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -14,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class TermController {
 
     @Resource
-    private TermRepository myTermRepository;
+    private TermRepository termRepository;
     
     @Resource 
-    private UserRepository myUserRepository;
+    private UserRepository userRepository;
     
     @Resource
     private TermStatusRepository termStatusRepository;
@@ -29,7 +26,7 @@ public class TermController {
     public String displayEntireListOfTerms(Model model) {
 //    	User user = myUserRepository.findByUsernameIgnoreCase((principal.getName()));
 
-        Iterable<Term> terms = myTermRepository.findAll();
+        Iterable<Term> terms = termRepository.findAll();
 //    	ArrayList<Term> terms = new ArrayList<>();
 //    	Iterable<TermStatus> termStatuses = termStatusRepository.findByUser(user);
 //    	for(TermStatus status : termStatuses) {
@@ -42,25 +39,25 @@ public class TermController {
 
     @RequestMapping("/term-single")
     public String displayASingleTerm(@RequestParam(value = "name", required = false) long id, Model model) {
-        Term term = myTermRepository.findOne(id);
+        Term term = termRepository.findOne(id);
         model.addAttribute("selectedTerm", term);
         return "term-single";
     }
 
     @RequestMapping("/search")
     public String search(@RequestParam(value = "title") String title, Model model) {
-        Iterable<Term> searchResults = myTermRepository.findByTitleIgnoreCaseLike("%" + title + "%");
+        Iterable<Term> searchResults = termRepository.findByTitleIgnoreCaseLike("%" + title + "%");
         model.addAttribute("terms", searchResults);
         return "term-list";
     }
 
     @RequestMapping("/add")
     public String add(@RequestParam(value = "title") String title, Model model) {
-        Term searchResults = myTermRepository.findByTitleIgnoreCase(title);
+        Term searchResults = termRepository.findByTitleIgnoreCase(title);
         if (searchResults == null) {
             Term term = new Term(title);
-            myTermRepository.save(term);
-            Iterable<User> allUsers = myUserRepository.findAll();
+            termRepository.save(term);
+            Iterable<User> allUsers = userRepository.findAll();
             if (allUsers != null && allUsers.iterator() != null && allUsers.iterator().hasNext()){
             	for(User user : allUsers) {
             		TermStatus termStatus = new TermStatus();
@@ -68,7 +65,7 @@ public class TermController {
             		termStatus.setUser(user);
             		termStatus.setDone(false);
             		user.getTermStatuses().add(termStatus);
-            		myUserRepository.save(user);
+            		userRepository.save(user);
             	}
             }
         }
@@ -78,8 +75,8 @@ public class TermController {
 
     @RequestMapping("/remove")
     public String remove(@RequestParam(value = "title") String title, Model model) {
-        Term term = myTermRepository.findByTitleIgnoreCase(title);
-        myTermRepository.delete(term);
+        Term term = termRepository.findByTitleIgnoreCase(title);
+        termRepository.delete(term);
         return displayEntireListOfTerms(model);
     }
 
