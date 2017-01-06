@@ -4,12 +4,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.annotation.Resource;
+
 import java.util.Collections;
 
 import static org.mockito.Mockito.when;
@@ -43,6 +45,7 @@ public class UserControllerMvcTest {
      * @throws Exception because some of the mock MVC methods throw exceptions
      */
     @Test
+    @WithMockUser
     public void shouldSearch() throws Exception {
 
         String searchTerm = "searchTerm";
@@ -54,6 +57,7 @@ public class UserControllerMvcTest {
     }
 
     @Test
+    @WithMockUser
     public void shouldAddUser() throws Exception {
 
         mockMvcSupport.perform(get("/addUser").param("username", "addUser")).andExpect(status().isOk());
@@ -61,6 +65,7 @@ public class UserControllerMvcTest {
     }
 
     @Test
+    @WithMockUser
     public void shouldRemoveUser() throws Exception {
 
         mockMvcSupport.perform(get("/removeUser").param("username", "addUser")).andExpect(status().isOk());
