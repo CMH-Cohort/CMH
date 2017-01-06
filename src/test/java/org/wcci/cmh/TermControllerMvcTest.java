@@ -75,7 +75,7 @@ public class TermControllerMvcTest {
 
 	@Test
 	@WithMockUser
-	@Ignore
+	@Ignore 
 	public void shouldAddTerm() throws Exception {
 
 		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());

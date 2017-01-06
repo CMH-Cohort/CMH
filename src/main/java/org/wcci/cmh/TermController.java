@@ -19,23 +19,14 @@ public class TermController {
     @Resource
     private TermStatusRepository termStatusRepository;
     
-//    @Resource
-//    private Principal principal;
 
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
-//    	User user = myUserRepository.findByUsernameIgnoreCase((principal.getName()));
 
-        Iterable<Term> terms = termRepository.findAll();
-//    	ArrayList<Term> terms = new ArrayList<>();
-//    	Iterable<TermStatus> termStatuses = termStatusRepository.findByUser(user);
-//    	for(TermStatus status : termStatuses) {
-//    		terms.add(status.getTerm());
-//    	}
+        Iterable<Term> terms = termRepository.findAll();  
         model.addAttribute("terms", terms);
         return "term-list";
     }
-
 
     @RequestMapping("/term-single")
     public String displayASingleTerm(@RequestParam(value = "name", required = false) long id, Model model) {
@@ -70,7 +61,6 @@ public class TermController {
             }
         }
         return "redirect:/all";
-        //return displayEntireListOfTerms(model);
     }
 
     @RequestMapping("/remove")
