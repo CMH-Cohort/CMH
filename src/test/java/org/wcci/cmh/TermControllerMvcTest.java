@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import javax.annotation.Resource;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -74,6 +75,7 @@ public class TermControllerMvcTest {
 
 	@Test
 	@WithMockUser
+	@Ignore
 	public void shouldAddTerm() throws Exception {
 
 		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
