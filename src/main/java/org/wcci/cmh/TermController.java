@@ -28,13 +28,6 @@ public class TermController {
         return "term-list";
     }
 
-    @RequestMapping("/term-single")
-    public String displayASingleTerm(@RequestParam(value = "name", required = false) long id, Model model) {
-        Term term = termRepository.findOne(id);
-        model.addAttribute("selectedTerm", term);
-        return "term-single";
-    }
-
     @RequestMapping("/search")
     public String search(@RequestParam(value = "title") String title, Model model) {
         Iterable<Term> searchResults = termRepository.findByTitleIgnoreCaseLike("%" + title + "%");
