@@ -6,13 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.wcci.cmh.security.UserUtility;
 
 @Controller
 public class TermController {
 
-	@Resource
-	private UserTermRepository userTermRepository;
-	
     @Resource
     private TermRepository termRepositoryToGetRidOf;
     
@@ -22,11 +20,12 @@ public class TermController {
     @Resource
     private TermStatusRepository termStatusRepository;
     
+    @Resource
+    private UserUtility userUtility;
+    
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
-
-    	Iterable<Term> terms = userTermRepository.findAll();  
-        model.addAttribute("terms", terms);
+    	model.addAttribute("user", userUtility.currentUser());
         return "term-list";
     }
 

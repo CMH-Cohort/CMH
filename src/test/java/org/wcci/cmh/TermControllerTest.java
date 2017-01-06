@@ -19,9 +19,6 @@ public class TermControllerTest {
     private TermController underTest;
 
     @Mock
-    private UserTermRepository termRepository;
-    
-    @Mock
     private TermRepository termRepositoryToGetRidOf;
     
     @Mock
