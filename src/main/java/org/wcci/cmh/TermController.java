@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class TermController {
 
+	@Resource
+	private UserTermRepository userTermRepository;
+	
     @Resource
-    private TermRepository termRepository;
+    private TermRepository termRepositoryToGetRidOf;
     
     @Resource 
     private UserRepository userRepository;
@@ -19,28 +22,27 @@ public class TermController {
     @Resource
     private TermStatusRepository termStatusRepository;
     
-
     @RequestMapping("/all")
     public String displayEntireListOfTerms(Model model) {
 
-        Iterable<Term> terms = termRepository.findAll();  
+    	Iterable<Term> terms = userTermRepository.findAll();  
         model.addAttribute("terms", terms);
         return "term-list";
     }
 
     @RequestMapping("/search")
     public String search(@RequestParam(value = "title") String title, Model model) {
-        Iterable<Term> searchResults = termRepository.findByTitleIgnoreCaseLike("%" + title + "%");
+        Iterable<Term> searchResults = termRepositoryToGetRidOf.findByTitleIgnoreCaseLike("%" + title + "%");
         model.addAttribute("terms", searchResults);
         return "term-list";
     }
 
     @RequestMapping("/add")
     public String add(@RequestParam(value = "title") String title, Model model) {
-        Term searchResults = termRepository.findByTitleIgnoreCase(title);
+        Term searchResults = termRepositoryToGetRidOf.findByTitleIgnoreCase(title);
         if (searchResults == null) {
             Term term = new Term(title);
-            termRepository.save(term);
+            termRepositoryToGetRidOf.save(term);
             Iterable<User> allUsers = userRepository.findAll();
             if (allUsers != null && allUsers.iterator() != null && allUsers.iterator().hasNext()){
             	for(User user : allUsers) {
@@ -58,8 +60,8 @@ public class TermController {
 
     @RequestMapping("/remove")
     public String remove(@RequestParam(value = "title") String title, Model model) {
-        Term term = termRepository.findByTitleIgnoreCase(title);
-        termRepository.delete(term);
+        Term term = termRepositoryToGetRidOf.findByTitleIgnoreCase(title);
+        termRepositoryToGetRidOf.delete(term);
         return displayEntireListOfTerms(model);
     }
 

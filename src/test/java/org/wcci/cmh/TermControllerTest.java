@@ -19,7 +19,10 @@ public class TermControllerTest {
     private TermController underTest;
 
     @Mock
-    private TermRepository termRepository;
+    private UserTermRepository termRepository;
+    
+    @Mock
+    private TermRepository termRepositoryToGetRidOf;
     
     @Mock
     private UserRepository userRepository;
@@ -43,7 +46,7 @@ public class TermControllerTest {
 
     @Test
     public void shouldSearch() {
-        when(termRepository.findByTitleIgnoreCaseLike("%Nonsense%")).thenReturn(searchResults);
+        when(termRepositoryToGetRidOf.findByTitleIgnoreCaseLike("%Nonsense%")).thenReturn(searchResults);
 
         underTest.search("Nonsense", model);
 
@@ -62,7 +65,7 @@ public class TermControllerTest {
 
         underTest.add("a Created Term", model);
 
-        verify(termRepository).save(termCaptor.capture());
+        verify(termRepositoryToGetRidOf).save(termCaptor.capture());
         Term capturedTerm = termCaptor.getValue();
 
         assertEquals("a Created Term", capturedTerm.getTitle());
@@ -70,21 +73,21 @@ public class TermControllerTest {
 
     @Test
     public void shouldRemoveTerm() {
-        when(termRepository.findByTitleIgnoreCase("delete term")).thenReturn(term);
+        when(termRepositoryToGetRidOf.findByTitleIgnoreCase("delete term")).thenReturn(term);
 
         underTest.remove("delete term", model);
 
-        verify(termRepository).delete(term);
+        verify(termRepositoryToGetRidOf).delete(term);
 
     }
 
     @Test
     public void shouldPreventDuplicates() {
-        when(termRepository.findByTitleIgnoreCase("a Created Term")).thenReturn(term);
+        when(termRepositoryToGetRidOf.findByTitleIgnoreCase("a Created Term")).thenReturn(term);
 
         underTest.add("a Created Term", model);
 
-        verify(termRepository, never()).save(any(Term.class));
+        verify(termRepositoryToGetRidOf, never()).save(any(Term.class));
     }
 
 }
