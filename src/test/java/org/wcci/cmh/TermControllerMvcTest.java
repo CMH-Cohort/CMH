@@ -33,9 +33,6 @@ public class TermControllerMvcTest {
 	private TermRepository termRepository;
 
 	@MockBean
-	private UserTermRepository userTermRepository;
-	
-	@MockBean
 	private UserRepository userRepository;
 
 	@MockBean
