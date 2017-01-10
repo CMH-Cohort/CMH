@@ -19,13 +19,13 @@ body {
 	padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
+    margin-top: 25px;
 }
 
 .done-true{
 	background-color: #53C15A;
 	color: white;
 }
-
 /* cover */
 
 #cover {
@@ -51,6 +51,23 @@ body {
 	border: 5px;
 	color: black;
 }
+#welcome {
+	 position: absolute;
+    right: 20px;
+    top: 2px;
+}
 
+#logout {
+	    padding-left: 8px;
+	        margin-right: 10px;
+}
+
+#list {
+	color: white;
+}
+
+div.container {
+	padding-bottom: 40px
+}
 
 /* ONLY STAGE AND ADD THIS FILE -- NOT THE HTML!! */

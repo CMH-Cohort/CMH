@@ -15,7 +15,7 @@ import org.wcci.cmh.security.UserUtility;
 public class TermController {
 
 	@Resource
-	private TermRepository termRepositoryToGetRidOf;
+	private TermRepository termRepository;
 
 	@Resource
 	private UserRepository userRepository;
@@ -30,13 +30,14 @@ public class TermController {
 	public String displayEntireListOfTerms(Model model) {
 		model.addAttribute("termStatuses", userUtility.currentUser()
 				.getTermStatuses());
+		model.addAttribute("user", userUtility.currentUser());
 		return "term-list";
 	}
 
 	@RequestMapping("/search")
 	public String search(@RequestParam(value = "title") String title,
 			Model model) {
-		Collection<Term> searchResults = termRepositoryToGetRidOf
+		Collection<Term> searchResults = termRepository
 				.findByTitleIgnoreCaseLike("%" + title + "%");
 		Collection<TermStatus> searchTermStatusResults = new ArrayList<TermStatus>();
 		for (TermStatus termStatus : userUtility.currentUser()
@@ -46,17 +47,18 @@ public class TermController {
 			}
 		}
 		model.addAttribute("termStatuses", searchTermStatusResults);
+		model.addAttribute("user", userUtility.currentUser());
 		return "term-list";
 
 	}
 
 	@RequestMapping("/add")
 	public String add(@RequestParam(value = "title") String title, Model model) {
-		Term searchResults = termRepositoryToGetRidOf
+		Term searchResults = termRepository
 				.findByTitleIgnoreCase(title);
 		if (searchResults == null) {
 			Term term = new Term(title);
-			termRepositoryToGetRidOf.save(term);
+			termRepository.save(term);
 			Iterable<User> allUsers = userRepository.findAll();
 			if (allUsers != null && allUsers.iterator() != null
 					&& allUsers.iterator().hasNext()) {
@@ -76,8 +78,8 @@ public class TermController {
 	@RequestMapping("/remove")
 	public String remove(@RequestParam(value = "title") String title,
 			Model model) {
-		Term term = termRepositoryToGetRidOf.findByTitleIgnoreCase(title);
-		termRepositoryToGetRidOf.delete(term);
+		Term term = termRepository.findByTitleIgnoreCase(title);
+		termRepository.delete(term);
 		return displayEntireListOfTerms(model);
 	}
 

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>TermTracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <!-- Latest compiled and minified CSS -->
@@ -21,10 +21,13 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
             
+              <script src="functionality.js"></script>
+            
 </head>
 <body>
-            <script src="functionality.js"></script>
-<h1>Search Terms</h1>
+ <p id="welcome"><span th:text="'Welcome, ' + ${user.username} + '!'" /><a id="logout" href="/logout">(Sign Out)</a></p>       
+<div class="container">
+<div class="col-md-4"><h1>Search Terms</h1>
 
 <form action="/search">
     <input type="text" name="title"/> <input type="submit"
@@ -33,25 +36,27 @@
 
 <!-- Link back to the complete list after search -->
 <a href="/all">Click here to view the full list of terms</a>
-
+</div>
+<div class="col-md-4">
 <h1>Add Term</h1>
 
 <form action="/add">
-    <input type="text" name="title"/> <input type="submit"
+    <input type="text" name="title" autofocus="autofocus" /> <input type="submit"
                                              value="Add"/>
 </form>
-
+</div>
+<div class="col-md-4">
 <h1>Remove Term</h1>
 
 <form action="/remove">
     <input type="text" name="title"/> <input type="submit"
                                              value="Remove"/>
 </form>
+</div>
 
-<h1>List of Terms</h1>
-
+</div>
 <!-- Put the for-each loop inside the tag you want to repeat -->
-<div id="term-background"><div th:each="termStatus : ${termStatuses}" th:class="'col-xs-6 col-sm-4 col-md-3 col-lg-2 status done-' + ${termStatus.done}" th:id="'termStatuses-' + ${termStatus.id}"
+<div id="term-background"><div th:each="termStatus : ${termStatuses}" th:class="'col-xs-12 col-sm-6 col-md-4 col-lg-3 status done-' + ${termStatus.done}" th:id="'termStatuses-' + ${termStatus.id}"
      th:text="${termStatus.term.title}">
 </div></div>
 </body>
