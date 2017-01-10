@@ -26,4 +26,15 @@ body {
 	color: white;
 }
 
+#welcome {
+	 position: absolute;
+    right: 20px;
+    top: 2px;
+}
+
+#logout {
+	    padding-left: 8px;
+	        margin-right: 10px;
+}
+
 /* ONLY STAGE AND ADD THIS FILE -- NOT THE HTML!! */

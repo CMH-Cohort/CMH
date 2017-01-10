@@ -30,6 +30,7 @@ public class TermController {
 	public String displayEntireListOfTerms(Model model) {
 		model.addAttribute("termStatuses", userUtility.currentUser()
 				.getTermStatuses());
+		model.addAttribute("user", userUtility.currentUser());
 		return "term-list";
 	}
 
@@ -46,6 +47,7 @@ public class TermController {
 			}
 		}
 		model.addAttribute("termStatuses", searchTermStatusResults);
+		model.addAttribute("user", userUtility.currentUser());
 		return "term-list";
 
 	}
