@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>TermTracker</title>
+    <title>Term Tracker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <!-- Latest compiled and minified CSS -->
@@ -26,11 +26,14 @@
 </head>
 <body>
  <p id="welcome"><span th:text="'Welcome, ' + ${user.username} + '!'" /><a id="logout" href="/logout">(Sign Out)</a></p>       
+<div class="logo"><h3>Term Tracker</h3></div>
+
 <div class="container">
-<div class="col-md-4"><h1>Search Terms</h1>
+
+<div class="col-md-4">
 
 <form action="/search">
-    <input type="text" name="title"/> <input type="submit"
+    <input type="text" name="title" placeholder="Search Terms" /> <input type="submit"
                                              value="Search" />
 </form>
 
@@ -38,18 +41,17 @@
 <a href="/all">Click here to view the full list of terms</a>
 </div>
 <div class="col-md-4">
-<h1>Add Term</h1>
+
 
 <form action="/add">
-    <input type="text" name="title" autofocus="autofocus" /> <input type="submit"
+    <input type="text" name="title" autofocus="autofocus" placeholder="Add Term" /> <input type="submit"
                                              value="Add"/>
 </form>
 </div>
 <div class="col-md-4">
-<h1>Remove Term</h1>
 
 <form action="/remove">
-    <input type="text" name="title"/> <input type="submit"
+    <input type="text" name="title" placeholder="Remove Term" /> <input type="submit"
                                              value="Remove"/>
 </form>
 </div>

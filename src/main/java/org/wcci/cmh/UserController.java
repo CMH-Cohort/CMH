@@ -30,9 +30,9 @@ public class UserController {
 
     @RequestMapping("/addUser")
     public String add(@RequestParam(value = "username") String username, Model model) {
-        User user = myUserRepository.findByUsernameIgnoreCase(username);
-        if (user == null) {
-            new User(username);
+        User userSearchResults = myUserRepository.findByUsernameIgnoreCase(username);
+        if (userSearchResults == null) {
+            User user = new User(username, "password");
             myUserRepository.save(user);
         }
         return displayEntireListOfTerms(model);
