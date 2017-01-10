@@ -35,17 +35,17 @@
         <div  id="cover-caption">
             <div class="container">
                 <div class="col-sm-10 col-sm-offset-1">
-                    <h1>Welcome to Term Tracker</h1>
+                    <h1 class="welcome-message">Welcome to Term Tracker</h1>
     
         <div  th:if="${param.error}">
            <p> Invalid username and password.</p>
         </div>
-        <div class="container" th:if="${param.logout}">
-            You have been logged out.
+        <div class="container welcome-message" th:if="${param.logout}">
+            <strong>You have been logged out.</strong>
         </div>
         <form th:action="@{/login}" method="post">
-            <div><label><input type="text" name="username" placeholder="Your User Name"/> </label></div>
-            <div><label><input type="password" name="password" placeholder="Your Password"/> </label></div>
+            <div><label><input type="text" name="username" placeholder="username"/> </label></div>
+            <div><label><input type="password" name="password" placeholder="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
         </div>
