@@ -1,5 +1,6 @@
 package org.wcci.cmh;
 
+import static java.util.Arrays.asList;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -9,6 +10,7 @@ import java.util.Collections;
 
 import javax.annotation.Resource;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.wcci.cmh.security.UserUtility;
 
 @WebMvcTest(TermController.class)
 @RunWith(SpringRunner.class)
@@ -37,6 +40,12 @@ public class TermControllerMvcTest {
 
 	@MockBean
 	private TermStatusRepository termStatusRepository;
+	
+	@MockBean
+	private UserUtility userUtility;
+	
+	@Mock
+	private User user;
 
 	@Mock
 	// this is not managed by Spring so we just use a standard @Mock annotation
@@ -59,6 +68,12 @@ public class TermControllerMvcTest {
 	 * @throws Exception
 	 *             because some of the mock MVC methods throw exceptions
 	 */
+	
+	@Before
+	public void setup() throws Exception {
+		when(userUtility.currentUser()).thenReturn(user);
+	}
+	
 	@Test
 	@WithMockUser
 	public void shouldSearch() throws Exception {
@@ -68,24 +83,17 @@ public class TermControllerMvcTest {
 		// results
 		when(termRepository.findByTitleLike("%" + searchTerm + "%")).thenReturn(Collections.emptyList());
 
+
 		// this is doing a get request with the URL
 		// /search?searchTitle=searchTerm
 		mockMvcSupport.perform(get("/search").param("title", searchTerm)).andExpect(status().isOk());
 	}
 
-	@Test
-	@WithMockUser
-	@Ignore 
-	public void shouldAddTerm() throws Exception {
-
-		mockMvcSupport.perform(get("/add").param("title", "addTerm")).andExpect(status().isOk());
-
-	}
 
 	@Test
 	@WithMockUser
 	public void shouldRemoveTerm() throws Exception {
-
+		
 		mockMvcSupport.perform(get("/remove").param("title", "addTerm")).andExpect(status().isOk());
 
 	}
