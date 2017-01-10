@@ -3,18 +3,54 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Spring Security Example </title>
+        
+        <!-- Bootstrap stuff -->
+        
+        
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"></link>
+          
+    <link rel="stylesheet" href="style.css"></link>
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        
+        
+        
+        
     </head>
     <body>
-        <div th:if="${param.error}">
-            Invalid username and password.
+    
+    
+    <section  id="cover">
+        <div  id="cover-caption">
+            <div class="container">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <h1>Welcome to Term Tracker</h1>
+    
+        <div  th:if="${param.error}">
+           <p> Invalid username and password.</p>
         </div>
-        <div th:if="${param.logout}">
+        <div class="container" th:if="${param.logout}">
             You have been logged out.
         </div>
         <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <div><label><input type="text" name="username" placeholder="Your User Name"/> </label></div>
+            <div><label><input type="password" name="password" placeholder="Your Password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+        </div>
+        </div>
+        </div>
+        </section>
     </body>
 </html>
