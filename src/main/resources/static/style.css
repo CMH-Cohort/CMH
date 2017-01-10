@@ -26,4 +26,31 @@ body {
 	color: white;
 }
 
+/* cover */
+
+#cover {
+    background: #53C15A url('img/stars.jpg') center center no-repeat;
+    background-size: cover;
+    color: black;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#cover-caption {
+    width: 100%;
+}
+
+.section-content {
+    padding: 5rem 0;
+}
+
+.border {
+	border: 5px;
+	color: black;
+}
+
+
 /* ONLY STAGE AND ADD THIS FILE -- NOT THE HTML!! */
