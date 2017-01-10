@@ -4,9 +4,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.*;
 import org.springframework.ui.Model;
+import org.wcci.cmh.security.UserUtility;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.singleton;
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
@@ -15,73 +21,100 @@ import static org.mockito.Mockito.when;
 
 public class TermControllerTest {
 
-    @InjectMocks
-    private TermController underTest;
+	@InjectMocks
+	private TermController underTest;
 
-    @Mock
-    private TermRepository repository;
+	@Mock
+	private TermRepository termRepositoryToGetRidOf;
 
-    @Mock
-    private Collection<Term> searchResults;
+	@Mock
+	private UserRepository userRepository;
 
-    @Mock
-    private Model model;
+	@Mock
+	private User user;
 
-    @Mock
-    private Term term;
+	@Mock
+	private UserUtility userUtility;
 
-    @Captor
-    private ArgumentCaptor<Term> termCaptor;
+	@Mock
+	private Model model;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
+	@Mock
+	private Term term;
+	@Mock
+	private Term nonMatchingTerm;
 
-    @Test
-    public void shouldSearch() {
-        when(repository.findByTitleIgnoreCaseLike("%Nonsense%")).thenReturn(searchResults);
+	@Mock
+	private TermStatus matchingTermStatus;
+	@Mock
+	private TermStatus nonMatchingTermStatus;
 
-        underTest.search("Nonsense", model);
+	@Captor
+	private ArgumentCaptor<Term> termCaptor;
 
-        verify(model).addAttribute("terms", searchResults);
-    }
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		when(userUtility.currentUser()).thenReturn(user);
+	}
 
-    @Test
-    public void shouldReturnSearchPage() {
-        String result = underTest.search("NoMatter", model);
+	@Test
+	public void shouldSearch() {
 
-        assertEquals("term-list", result);
-    }
+		// associate 'term' with matchingTermStatus
+		when(matchingTermStatus.getTerm()).thenReturn(term);
 
-    @Test
-    public void shouldAddTerm() {
+		String searchTerm = "Nonsense";
 
-        underTest.add("a Created Term", model);
+		// set up our search to return the matching 'term' and a non-matching
+		// term
+		Collection<Term> searchResults = asList(term, nonMatchingTerm);
+		when(termRepositoryToGetRidOf.findByTitleIgnoreCaseLike("%" + searchTerm + "%")).thenReturn(searchResults);
 
-        verify(repository).save(termCaptor.capture());
-        Term capturedTerm = termCaptor.getValue();
+		// set up our user to return two statuses: one matches 'term', one
+		// doesn't
+		when(user.getTermStatuses()).thenReturn(asList(matchingTermStatus, nonMatchingTermStatus));
 
-        assertEquals("a Created Term", capturedTerm.getTitle());
-    }
+		underTest.search(searchTerm, model);
 
-    @Test
-    public void shouldRemoveTerm() {
-        when(repository.findByTitleIgnoreCase("delete term")).thenReturn(term);
+		verify(model).addAttribute("termStatuses", singletonList(matchingTermStatus));
+	}
 
-        underTest.remove("delete term", model);
+	@Test
+	public void shouldReturnSearchPage() {
+		String result = underTest.search("NoMatter", model);
 
-        verify(repository).delete(term);
+		assertEquals("term-list", result);
+	}
 
-    }
+	@Test
+	public void shouldAddTerm() {
 
-    @Test
-    public void shouldPreventDuplicates() {
-        when(repository.findByTitleIgnoreCase("a Created Term")).thenReturn(term);
+		underTest.add("a Created Term", model);
 
-        underTest.add("a Created Term", model);
+		verify(termRepositoryToGetRidOf).save(termCaptor.capture());
+		Term capturedTerm = termCaptor.getValue();
 
-        verify(repository, never()).save(any(Term.class));
-    }
+		assertEquals("a Created Term", capturedTerm.getTitle());
+	}
+
+	@Test
+	public void shouldRemoveTerm() {
+		when(termRepositoryToGetRidOf.findByTitleIgnoreCase("delete term")).thenReturn(term);
+
+		underTest.remove("delete term", model);
+
+		verify(termRepositoryToGetRidOf).delete(term);
+
+	}
+
+	@Test
+	public void shouldPreventDuplicates() {
+		when(termRepositoryToGetRidOf.findByTitleIgnoreCase("a Created Term")).thenReturn(term);
+
+		underTest.add("a Created Term", model);
+
+		verify(termRepositoryToGetRidOf, never()).save(any(Term.class));
+	}
 
 }
